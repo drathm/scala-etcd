@@ -1,4 +1,4 @@
-import AssemblyKeys.sbt
+import AssemblyKeys._
 
 organization := "net.nikore"
 
@@ -25,8 +25,6 @@ libraryDependencies ++= {
     "com.novocode"                  %     "junit-interface"     % "0.9" % "test",
     "org.scala-lang.modules"        %%    "scala-xml"           % "1.0.2",
     "org.scalatest"                 %%    "scalatest"           % "2.2.1" % "test"
-    // scala test
-    // scala xml
   )
 }
 

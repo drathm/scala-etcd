@@ -19,7 +19,7 @@ import net.nikore.etcd.EtcdJsonProtocol.EtcdListResponse
 
 class EtcdClient(conn: String) {
 
-  private val baseUrl = conn + "/v2/keys/"
+  private val baseUrl = conn + "/v2/keys"
   implicit val system = ActorSystem("etcd-client")
   import system.dispatcher
 
