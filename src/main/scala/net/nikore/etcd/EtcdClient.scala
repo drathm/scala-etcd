@@ -14,13 +14,18 @@ import spray.json._
 import spray.http.{Uri, HttpRequest, HttpResponse}
 import EtcdExceptions._
 import java.net.URLEncoder
+import com.typesafe.config.Config
 import net.nikore.etcd.EtcdJsonProtocol.EtcdResponse
 import net.nikore.etcd.EtcdJsonProtocol.EtcdListResponse
 
-class EtcdClient(conn: String) {
+class EtcdClient(conn: String, config: Option[Config]) {
 
   private val baseUrl = conn + "/v2/keys"
-  implicit val system = ActorSystem("etcd-client")
+  implicit val system = config match {
+    case Some(config) => ActorSystem("etcd-client", config)
+    case None => ActorSystem("etcd-client")
+  }
+
   import system.dispatcher
 
   def getKey(key: String): Future[EtcdResponse] = {
